@@ -8,6 +8,9 @@ Destructuring assignments in R with the `.` object.
 ```
 # extract number of rows, number of columns from mtcars
 .[nr, nc] <- dim(mtcars)
+
+# extract first, last element of vector
+.[first, .., last] <- c(1, 2, 3, 4, 5)
 ```
 
 

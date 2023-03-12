@@ -1,8 +1,27 @@
 
-test_that("dot works", {
+test_that("index-based destructuring works", {
+
+  .[value] <- list(1L)
+  expect_equal(value, 1L)
 
   .[nr, nc] <- dim(mtcars)
   expect_equal(nr, 32)
   expect_equal(nc, 11)
+
+})
+
+test_that("name-based destructuring works", {
+
+  .[a = x, b = y] <- list(y = "y", x = "x")
+  expect_equal(a, "x")
+  expect_equal(b, "y")
+
+})
+
+test_that("we can use dots to drop unneeded values", {
+
+  .[a, .., e] <- list(1, 2, 3, 4, 5)
+  expect_equal(a, 1)
+  expect_equal(b, 5)
 
 })
