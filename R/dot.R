@@ -1,4 +1,6 @@
 
+dotdot <- as.name("..")
+
 #' @export
 . <- structure(list(), class = "dotty")
 
@@ -19,15 +21,7 @@ dotty <- function(call, value, envir) {
   parts <- call[3L:(length(call) - 1L)]
 
   # search for a '..' placeholder
-  dotdot <- as.name("..")
-
-  index <- NULL
-  for (i in seq_along(parts)) {
-    if (identical(parts[[i]], dotdot)) {
-      index <- i
-      break
-    }
-  }
+  index <- dotty_find(parts)
 
   if (is.null(index))
     return(dotty_impl(parts, value, envir))
@@ -54,14 +48,27 @@ dotty <- function(call, value, envir) {
 dotty_impl <- function(parts, value, envir) {
 
   for (i in seq_along(parts)) {
-    symbol <- as.character(parts[[i]])
+
+    part <- parts[[i]]
     key <- names(parts)[[i]]
-    if (is.character(key) && nzchar(key))
-      assign(key, value[[symbol]], envir = envir)
-    else
-      assign(symbol, value[[i]], envir = envir)
+
+    if (is.character(key) && nzchar(key)) {
+      result <- eval(part, envir = value, enclos = envir)
+      assign(key, result, envir = envir)
+    } else {
+      assign(as.character(part), value[[i]], envir = envir)
+    }
+
   }
 
   .
+
+}
+
+dotty_find <- function(parts) {
+
+  for (i in seq_along(parts))
+    if (identical(parts[[i]], dotdot))
+      return(i)
 
 }

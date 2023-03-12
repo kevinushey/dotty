@@ -54,3 +54,13 @@ test_that("we can use a trailing '..' to drop trailing values", {
   expect_equal(b, 'b')
 
 })
+
+test_that("we can support arbitrary expressions", {
+
+  .[a = mpg * 2] <- mtcars
+  expect_equal(a, mtcars$mpg * 2)
+
+  .[mpg_cyl = mpg * cyl] <- mtcars
+  expect_equal(mpg_cyl, mtcars$mpg * mtcars$cyl)
+
+})
