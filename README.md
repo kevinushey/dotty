@@ -40,6 +40,14 @@ c(x, y, z)
     ## [1] 1 2 3
 
 ``` r
+# split version components
+.[major, minor, patch] <- getRversion()
+c(major, minor, patch)
+```
+
+    ## [1] 4 2 2
+
+``` r
 # compute on values in object -- this is probably too magical
 .[total = sum(a)] <- list(a = 1:5)
 total

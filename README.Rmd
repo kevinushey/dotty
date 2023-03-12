@@ -27,6 +27,10 @@ beta
 .[x, .[y, .[z]]] <- list(1, list(2, list(3)))
 c(x, y, z)
 
+# split version components
+.[major, minor, patch] <- getRversion()
+c(major, minor, patch)
+
 # compute on values in object -- this is probably too magical
 .[total = sum(a)] <- list(a = 1:5)
 total
