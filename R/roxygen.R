@@ -1,2 +1,4 @@
 
-#' @importFrom utils globalVariables head tail
+#' @importFrom utils
+#'   globalVariables head tail
+NULL
