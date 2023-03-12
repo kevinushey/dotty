@@ -7,23 +7,30 @@ dotdot <- as.name("..")
 #' @export
 `[<-.dotty` <- function(x, ..., value) {
 
+  # get call parts
+  call <- as.list(sys.call())
+  parts <- call[3L:(length(call) - 1L)]
+
+  # destructure value
+  value <- destructure(value)
+
+  # run dotty
   dotty(
-    call  = as.list(sys.call()),
+    parts = parts,
     value = value,
     envir = parent.frame()
   )
 
 }
 
-dotty <- function(call, value, envir) {
+dotty <- function(parts, value, envir) {
 
-  # drop the irrelevant parts of the call
-  parts <- call[3L:(length(call) - 1L)]
-
-  # search for a '..' placeholder
+  # search for a '..' placeholder; if we
   index <- dotty_find(parts)
-  if (is.null(index))
-    return(dotty_impl(parts, value, envir))
+  if (is.null(index)) {
+    dotty_impl(parts, value, envir)
+    return(.)
+  }
 
   # split into left parts, right parts
   nleft <- index - 1L
@@ -55,15 +62,16 @@ dotty_impl <- function(parts, value, envir) {
     key <- names(parts)[[i]]
 
     if (is.character(key) && nzchar(key)) {
-      result <- eval(part, envir = value, enclos = envir)
+      result <- eval(part, envir = as.list(value), enclos = envir)
       assign(key, result, envir = envir)
+    } else if (is.call(part)) {
+      part <- tail(as.list(part), n = -2L)
+      dotty(part, value[[i]], envir)
     } else {
       assign(as.character(part), value[[i]], envir = envir)
     }
 
   }
-
-  .
 
 }
 

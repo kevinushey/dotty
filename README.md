@@ -1,7 +1,5 @@
-README
+dotty
 ================
-
-## dotty
 
 Destructuring assignments in R with the `.` object.
 
@@ -32,6 +30,14 @@ beta
 ```
 
     ## [1] 2
+
+``` r
+# unpack nested values
+.[x, .[y, .[z]]] <- list(1, list(2, list(3)))
+c(x, y, z)
+```
+
+    ## [1] 1 2 3
 
 ``` r
 # compute on values in object -- this is probably too magical

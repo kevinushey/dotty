@@ -11,7 +11,6 @@ dotify_file <- function(file) {
   dotify_expr(expr)
 }
 
-#' @importFrom utils globalVariables
 dotify_expr <- function(expr) {
 
   if (identical(expr, quote(expr = )))

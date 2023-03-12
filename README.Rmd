@@ -23,6 +23,10 @@ c(first, last)
 .[beta = beta] <- list(alpha = 1, beta = 2, gamma = 3)
 beta
 
+# unpack nested values
+.[x, .[y, .[z]]] <- list(1, list(2, list(3)))
+c(x, y, z)
+
 # compute on values in object -- this is probably too magical
 .[total = sum(a)] <- list(a = 1:5)
 total

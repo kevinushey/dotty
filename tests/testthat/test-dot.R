@@ -20,9 +20,9 @@ test_that("name-based destructuring works", {
 
 test_that("we can use dotdot to drop unneeded values", {
 
-  .[a, .., e] <- list(1, 2, 3, 4, 5)
-  expect_equal(a, 1)
-  expect_equal(e, 5)
+  .[a, .., z] <- letters
+  expect_equal(a, 'a')
+  expect_equal(z, 'z')
 
 })
 
@@ -63,4 +63,21 @@ test_that("we can support arbitrary expressions", {
   .[mpg_cyl = mpg * cyl] <- mtcars
   expect_equal(mpg_cyl, mtcars$mpg * mtcars$cyl)
 
+})
+
+test_that("we support recursive invocations", {
+
+  .[a, .[b, .[c]]] <- list(1, list(2, list(3)))
+  expect_equal(a, 1)
+  expect_equal(b, 2)
+  expect_equal(c, 3)
+
+})
+
+test_that("we can destructure R versions", {
+  version <- getRversion()
+  .[major, minor, patch] <- version
+  expect_equal(major, unclass(version)[[1L]][[1L]])
+  expect_equal(minor, unclass(version)[[1L]][[2L]])
+  expect_equal(patch, unclass(version)[[1L]][[3L]])
 })
