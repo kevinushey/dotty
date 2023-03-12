@@ -2,5 +2,4 @@
 
 S3method("[<-",dotty)
 export(.)
-export(dotty)
 importFrom(utils,globalVariables)

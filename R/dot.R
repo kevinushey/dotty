@@ -22,19 +22,21 @@ dotty <- function(call, value, envir) {
 
   # search for a '..' placeholder
   index <- dotty_find(parts)
-
   if (is.null(index))
     return(dotty_impl(parts, value, envir))
 
+  # split into left parts, right parts
   nleft <- index - 1L
   nright <- length(parts) - index + 1L
 
+  # evaluate left variables
   dotty_impl(
     head(parts, n = nleft),
     head(value, n = nleft),
     envir
   )
 
+  # evaluate right variables
   dotty_impl(
     tail(parts, n = nright),
     tail(value, n = nright),
