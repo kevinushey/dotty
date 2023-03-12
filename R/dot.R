@@ -4,11 +4,13 @@
 
 #' @export
 `[<-.dotty` <- function(x, ..., value) {
+
   dotty(
     call  = as.list(sys.call()),
     value = value,
     envir = parent.frame()
   )
+
 }
 
 dotty <- function(call, value, envir) {

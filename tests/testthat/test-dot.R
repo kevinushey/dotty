@@ -18,10 +18,39 @@ test_that("name-based destructuring works", {
 
 })
 
-test_that("we can use dots to drop unneeded values", {
+test_that("we can use dotdot to drop unneeded values", {
 
   .[a, .., e] <- list(1, 2, 3, 4, 5)
   expect_equal(a, 1)
-  expect_equal(b, 5)
+  expect_equal(e, 5)
+
+})
+
+test_that("we can capture a single value by name", {
+
+  .[x = mpg] <- mtcars
+  expect_equal(x, mtcars$mpg)
+
+})
+
+test_that("we can use a leading '..' to drop leading values", {
+
+  .[.., z] <- letters
+  expect_equal(z, 'z')
+
+  .[.., y, z] <- letters
+  expect_equal(y, 'y')
+  expect_equal(z, 'z')
+
+})
+
+test_that("we can use a trailing '..' to drop trailing values", {
+
+  .[a, ..] <- letters
+  expect_equal(a, 'a')
+
+  .[a, b, ..] <- letters
+  expect_equal(a, 'a')
+  expect_equal(b, 'b')
 
 })
