@@ -32,11 +32,15 @@ dotify <- function() {
 
   # tell codetools to accept our code's handlers
   # TODO: ask Luke nicely to allow us to do this
+  if (.BaseNamespaceEnv$bindingIsLocked("isUtilsVar", env = codetools)) {
+    .BaseNamespaceEnv$unlockBinding("isUtilsVar", env = codetools)
+    on.exit(.BaseNamespaceEnv$lockBinding("isUtilsVar", env = codetools), add = TRUE)
+  }
+
+  # replace the binding
   hack <- function(v, env) TRUE
   environment(hack) <- codetools
-  .BaseNamespaceEnv$unlockBinding("isUtilsVar", env = codetools)
   assign("isUtilsVar", hack, envir = codetools)
-  .BaseNamespaceEnv$lockBinding("isUtilsVar", env = codetools)
 
   # add our handler for subset-assignment
   handler <- handlers$`[<-` %||% function(v, w) {}
