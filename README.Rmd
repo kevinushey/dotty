@@ -3,6 +3,10 @@ title: dotty
 output: github_document
 ---
 
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/kevinushey/dotty/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/kevinushey/dotty/actions/workflows/R-CMD-check.yaml)
+<!-- badges: end -->
+
 Destructuring assignments in R with the `.` object.
 
 

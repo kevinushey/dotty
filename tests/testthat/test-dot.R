@@ -81,3 +81,23 @@ test_that("we can destructure R versions", {
   expect_equal(minor, unclass(version)[[1L]][[2L]])
   expect_equal(patch, unclass(version)[[1L]][[3L]])
 })
+
+test_that("dotify helps codetools understand dotty usages", {
+
+  skip_if_not_installed("codetools")
+
+  example <- function() {
+    .[apple, banana] <- c(1, 2)
+    c(apple, banana, cherry)
+  }
+
+  messages <- ""
+  result <- codetools::checkUsage(example, report = function(x) {
+    messages <<- paste(messages, x, sep = "")
+  })
+
+  expect_false(grepl("apple", messages))
+  expect_false(grepl("banana", messages))
+  expect_true(grepl("cherry", messages))
+
+})

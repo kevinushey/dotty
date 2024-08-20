@@ -1,6 +1,11 @@
 dotty
 ================
 
+<!-- badges: start -->
+
+[![R-CMD-check](https://github.com/kevinushey/dotty/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/kevinushey/dotty/actions/workflows/R-CMD-check.yaml)
+<!-- badges: end -->
+
 Destructuring assignments in R with the `.` object.
 
 ### Usage
@@ -45,15 +50,7 @@ c(x, y, z)
 c(major, minor, patch)
 ```
 
-    ## [1] 4 2 2
-
-``` r
-# compute on values in object -- this is probably too magical
-.[total = sum(a)] <- list(a = 1:5)
-total
-```
-
-    ## [1] 15
+    ## [1] 4 4 1
 
 ### R CMD check
 
@@ -61,8 +58,11 @@ If you’d like to use `dotty` in your CRAN package, you can avoid
 `R CMD check` warnings by including a file called `R/zzz.R` with the
 contents:
 
-    dotty::dotify()
+    .onLoad <- function(libname, pkgname) {
+      dotty::dotify()
+    }
 
-This function will search for usages of `dotty`, and call
-`utils::globalVariables()` to assert to `R CMD check` that such
-variables are valid for use.
+This function patches
+[codetools](https://cran.r-project.org/package=codetools) so that
+variables usages in `.` expressions can be linted as though those were
+regular bindings / assignments.
