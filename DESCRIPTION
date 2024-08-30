@@ -11,9 +11,9 @@ Authors@R: c(
     )
   )
 Description: Provides a `.` object which can be used for unpacking
-  assignments. For example, `.[nr, nc] <- dim(mtcars)` could be used to
-  pull the number of rows and number of columns from `dim(mtcars)` into
-  individual variables `nr` and `nc` in a single step.
+  assignments. For example, `.[rows, columns] <- dim(cars)` could be used to
+  pull the number of rows and number of columns from `dim(cars)` into
+  individual variables `rows` and `columns` in a single step.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
