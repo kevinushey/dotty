@@ -11,8 +11,8 @@
 <script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="The Unpacking Dot Operator">
-<meta name="description" content="Provides a `.` object which can be used for unpacking assignments. For example, `.[nr, nc] &lt;- dim(mtcars)` could be used to pull the number of rows and number of columns from `dim(mtcars)` into individual variables `nr` and `nc` in a single step.">
-<meta property="og:description" content="Provides a `.` object which can be used for unpacking assignments. For example, `.[nr, nc] &lt;- dim(mtcars)` could be used to pull the number of rows and number of columns from `dim(mtcars)` into individual variables `nr` and `nc` in a single step.">
+<meta name="description" content="Provides a `.` object which can be used for unpacking assignments. For example, `.[rows, columns] &lt;- dim(cars)` could be used to pull the number of rows and number of columns from `dim(cars)` into individual variables `rows` and `columns` in a single step.">
+<meta property="og:description" content="Provides a `.` object which can be used for unpacking assignments. For example, `.[rows, columns] &lt;- dim(cars)` could be used to pull the number of rows and number of columns from `dim(cars)` into individual variables `rows` and `columns` in a single step.">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -22,7 +22,7 @@
 
     <a class="navbar-brand me-2" href="index.html">dotty</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,6 +32,7 @@
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
 <li class="nav-item"><a class="nav-link" href="reference/index.html">Reference</a></li>
+<li class="nav-item"><a class="nav-link" href="news/index.html">Changelog</a></li>
       </ul>
 <ul class="navbar-nav">
 <li class="nav-item"><form class="form-inline" role="search">
@@ -91,7 +92,14 @@
 <p>This function patches <a href="https://cran.r-project.org/package=codetools" class="external-link">codetools</a> so that variables usages in <code>.</code> expressions can be linted as though those were regular bindings / assignments.</p>
 </div>
 </div>
-  </main><aside class="col-md-3"><div class="license">
+  </main><aside class="col-md-3"><div class="links">
+<h2 data-toc-skip>Links</h2>
+<ul class="list-unstyled">
+<li><a href="https://cloud.r-project.org/package=dotty" class="external-link">View on CRAN</a></li>
+</ul>
+</div>
+
+<div class="license">
 <h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
 <li>
