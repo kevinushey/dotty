@@ -4,7 +4,7 @@ dotdot <- as.name("..")
 
 #' The Destructuring Dot Operator
 #'
-#' Use `dotty` to performed destructuring assignments.
+#' Use `dotty` to perform destructuring assignments.
 #' Please see the examples below for usages.
 #'
 #' @examples
@@ -33,6 +33,16 @@ dotdot <- as.name("..")
 #' @rdname dotty
 #' @export
 . <- structure(list(), class = "dotty")
+
+#' @export
+format.dotty <- function(x, ...) {
+  "<dotty>"
+}
+
+#' @export
+print.dotty <- function(x, ...) {
+  writeLines(format(x, ...))
+}
 
 #' @export
 `[<-.dotty` <- function(x, ..., value) {
