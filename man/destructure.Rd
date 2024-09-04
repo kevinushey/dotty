@@ -6,6 +6,9 @@
 \usage{
 destructure(object)
 }
+\arguments{
+\item{object}{An \R object.}
+}
 \description{
 `destructure` is primarily used to help define how an
 object should be prepared, or transformed, prior to a

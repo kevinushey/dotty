@@ -2,7 +2,8 @@ Package: dotty
 Type: Package
 Title: The Unpacking Dot Operator
 Version: 0.1.0.9000
-Authors@R: c(
+Authors@R:
+  c(
     person(
       "Kevin", "Ushey",
       email = "kevinushey@gmail.com",

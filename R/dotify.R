@@ -1,8 +1,25 @@
 
-`%||%` <- function(x, y) {
-  if (is.null(x)) y else x
-}
-
+#' Dotify an R Package
+#'
+#' When using `dotty` within an R package, you might see **NOTE**s during
+#' `R CMD check` of the form:
+#'
+#' ```
+#' N  checking R code for possible problems (1.8s)
+#'    <package>: no visible binding for global variable <variable>
+#'    Undefined global functions or variables:
+#'      <variable>
+#' ```
+#'
+#' This occurs because the [codetools] package, which is used for static
+#' analysis of \R code during `R CMD check`, does not recognize that e.g.
+#' `.[apple] <- 42` would create a variable called `apple` in the current
+#' scope. Calling `dotty::dotify()` in your package's `.onLoad()` will
+#' allow `dotty` to patch `codetools` in a way that will allow it to
+#' understand `dotty` usages, and so prevent these `R CMD check` notes
+#' from being emitted.
+#'
+#' @export
 dotify <- function() {
 
   # allow us to be disabled if necessary
