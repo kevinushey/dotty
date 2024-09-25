@@ -101,3 +101,21 @@ test_that("dotify helps codetools understand dotty usages", {
   expect_true(grepl("cherry", messages))
 
 })
+
+test_that("dotty doesn't create a variable called '..'", {
+  
+  .[a, .., z] <- letters
+  expect_equal(a, "a")
+  expect_equal(z, "z")
+  expect_false(exists(".."))
+  
+})
+
+test_that("we require all arguments to be named or unnamed", {
+  
+  expect_error({
+    data <- list(w = 1, x = 2, y = 3, z = 4)
+    .[apple = x, banana] <- data
+  })
+  
+})

@@ -77,7 +77,7 @@ dotty <- function(parts, value, envir) {
   # lhs and rhs parts, and apply on each side
   # split into left parts, right parts
   nlhs <- index - 1L
-  nrhs <- length(parts) - index + 1L
+  nrhs <- length(parts) - index
 
   # evaluate left variables
   dotty_impl(
@@ -99,6 +99,13 @@ dotty <- function(parts, value, envir) {
 
 dotty_impl <- function(parts, value, envir) {
 
+  nms <- names(parts)
+  if (is.character(nms)) {
+    n <- sum(nms == "")
+    if (!n %in% c(0L, length(nms)))
+      stop("cannot mix named with unnamed arguments in `.[]` invocations")
+  }
+  
   for (i in seq_along(parts)) {
 
     part <- parts[[i]]
