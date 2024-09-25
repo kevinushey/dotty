@@ -33,8 +33,9 @@
 
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.2.0" id="dotty-020-unreleased">dotty 0.2.0 (UNRELEASED)<a class="anchor" aria-label="anchor" href="#dotty-020-unreleased"></a></h2>
-<ul><li>
-<code><a href="../reference/dotify.html">dotty::dotify()</a></code> is now exported for use by R packages which would like to use <code>dotty</code> internally. (#1)</li>
+<ul><li><p>Fixed an issue where invocations like <code>.[a, .., z] &lt;- letters</code> would also create a binding called <code>..</code>. (#4)</p></li>
+<li><p><code>dotty</code> now requires all arguments within a <code>.[]</code> invocation to be either named or unnamed – that is, <code>.[a = a, b] &lt;- c(a = "a", b = "b")</code> are now disallowed. This may be relaxed in a future release. (#3)</p></li>
+<li><p><code><a href="../reference/dotify.html">dotty::dotify()</a></code> is now exported for use by R packages which would like to use <code>dotty</code> internally. (#1)</p></li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.1.0" id="dotty-010">dotty 0.1.0<a class="anchor" aria-label="anchor" href="#dotty-010"></a></h2><p class="text-muted">CRAN release: 2024-08-30</p>
@@ -49,7 +50,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
     </footer></div>
