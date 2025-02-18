@@ -12,7 +12,7 @@ An object of class \code{dotty} of length 0.
 .
 }
 \description{
-Use `dotty` to perform destructuring assignments.
+Use \code{dotty} to perform destructuring assignments.
 Please see the examples below for usages.
 }
 \examples{
