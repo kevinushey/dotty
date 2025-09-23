@@ -1,6 +1,8 @@
 
 #' Dotify an R Package
 #'
+#' Enable use of `dotty` within an R package.
+#'
 #' When using `dotty` within an R package, you might see **NOTE**s during
 #' `R CMD check` of the form:
 #'

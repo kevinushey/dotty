@@ -7,17 +7,19 @@
 dotify()
 }
 \description{
-When using \code{dotty} within an R package, you might see \strong{NOTE}s during
-\verb{R CMD check} of the form:
+Enable use of \code{dotty} within an R package.
 }
 \details{
+When using \code{dotty} within an R package, you might see \strong{NOTE}s during
+\verb{R CMD check} of the form:
+
 \if{html}{\out{<div class="sourceCode">}}\preformatted{N  checking R code for possible problems (1.8s)
    <package>: no visible binding for global variable <variable>
    Undefined global functions or variables:
      <variable>
 }\if{html}{\out{</div>}}
 
-This occurs because the \link{codetools} package, which is used for static
+This occurs because the \link[codetools:codetools]{codetools::codetools} package, which is used for static
 analysis of \R code during \verb{R CMD check}, does not recognize that e.g.
 \code{.[apple] <- 42} would create a variable called \code{apple} in the current
 scope. Calling \code{dotty::dotify()} in your package's \code{.onLoad()} will
